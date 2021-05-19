@@ -300,22 +300,26 @@ static CDVWKInAppBrowser* instance = nil;
     dispatch_async(dispatch_get_main_queue(), ^{
         if (weakSelf.inAppBrowserViewController != nil) {
             float osVersion = [[[UIDevice currentDevice] systemVersion] floatValue];
-            __strong __typeof(weakSelf) strongSelf = weakSelf;
-            if (!strongSelf->tmpWindow) {
-                CGRect frame = [[UIScreen mainScreen] bounds];
-                if(initHidden && osVersion < 11){
-                   frame.origin.x = -10000;
+            
+            CDVWKInAppBrowser* strongSelf = weakSelf;
+            if(strongSelf)
+            {
+                if (!strongSelf->tmpWindow) {
+                    CGRect frame = [[UIScreen mainScreen] bounds];
+                    if(initHidden && osVersion < 11){
+                       frame.origin.x = -10000;
+                    }
+                    strongSelf->tmpWindow = [[UIWindow alloc] initWithFrame:frame];
                 }
-                strongSelf->tmpWindow = [[UIWindow alloc] initWithFrame:frame];
-            }
-            UIViewController *tmpController = [[UIViewController alloc] init];
-            [strongSelf->tmpWindow setRootViewController:tmpController];
-            [strongSelf->tmpWindow setWindowLevel:UIWindowLevelNormal];
+                UIViewController *tmpController = [[UIViewController alloc] init];
+                [strongSelf->tmpWindow setRootViewController:tmpController];
+                [strongSelf->tmpWindow setWindowLevel:UIWindowLevelNormal];
 
-            if(!initHidden || osVersion < 11){
-                [self->tmpWindow makeKeyAndVisible];
+                if(!initHidden || osVersion < 11){
+                    [self->tmpWindow makeKeyAndVisible];
+                }
+                [tmpController presentViewController:nav animated:!noAnimate completion:nil];
             }
-            [tmpController presentViewController:nav animated:!noAnimate completion:nil];
         }
     });
 }
