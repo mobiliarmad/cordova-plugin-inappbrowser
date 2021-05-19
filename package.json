@@ -1,10 +1,10 @@
 {
-  "name": "cordova-plugin-inappbrowser",
+  "name": "@capacitor-mobi/cordova-plugin-camera ",
   "version": "5.0.1-dev",
   "description": "Cordova InAppBrowser Plugin",
   "types": "./types/index.d.ts",
   "cordova": {
-    "id": "cordova-plugin-inappbrowser",
+    "id": "@capacitor-mobi/cordova-plugin-camera",
     "platforms": [
       "android",
       "browser",
@@ -13,8 +13,8 @@
       "windows"
     ]
   },
-  "repository": "github:apache/cordova-plugin-inappbrowser",
-  "bugs": "https://github.com/apache/cordova-plugin-inappbrowser/issues",
+  "repository": "github:mobiliarmad/cordova-plugin-camera",
+  "bugs": "https://github.com/mobiliarmad/cordova-plugin-camera/issues",
   "keywords": [
     "cordova",
     "in",
